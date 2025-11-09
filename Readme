@@ -1,89 +1,88 @@
-# Aether — Guide rapide et non-technique
+# Aquaservice — README simple (français)
 
-Ce dépôt contient une application web de météo (Aether) permettant d'explorer des stations météo, consulter et comparer des mesures, et créer/partager des "météothèques" (bibliothèques de stations/mesures).
+Description courte
+------------------
+Aquaservice est une application web simple pour explorer des stations et données sur la qualité de l'eau (analyses, opérations, localisation des stations). Elle combine des données locales (une base SQLite) et des appels à l'API Hubeau (eaufrance) pour afficher cartes, listes et détails.
 
-Ce guide explique le contexte, l'organisation des fichiers et comment démarrer l'application de manière simple, même si vous n'êtes pas développeur.
+Pour qui ?
+-----------
+Ce README explique l'objectif et comment démarrer l'application de façon simple, en langage non technique. Il s'adresse à toute personne souhaitant lancer ou tester l'application localement (Windows/PowerShell), pas seulement aux développeurs.
 
----
+Contenu du projet (emplacement des fichiers importants)
+-----------------------------------------------------
+- `app.py` : point d'entrée de l'application (serveur Flask et routes).
+- `model.py` : fonctions qui lisent la base SQLite `SAE_BASE.db` et qui aident à obtenir régions, départements, communes, coordonnées, détails des stations.
+- `templates/` : pages HTML utilisées par l'application (accueil, carte, analyses, station, etc.).
+- `static/css/` et `static/images/` : fichiers de style et images.
+- `SAE_BASE.db` : base de données SQLite (si fournie). Si absente, l'application peut encore interroger l'API Hubeau pour certaines pages.
 
-## Contexte (en une phrase)
-Aether centralise des données météo (stations, mesures) et fournit une interface pour les visualiser, comparer et sauvegarder des collections personnalisées (météothèques).
+Fonctionnalités visibles (pour un utilisateur)
+---------------------------------------------
+- Page d'accueil et navigation.
+- Carte interactive montrant les stations.
+- Recherche et filtrage par région / département / commune.
+- Listes d'analyses, opérations et conditions environnementales.
+- Détails d'une station (liens, dates, bassin, cours d'eau).
 
----
+Comment lancer l'application (Windows, PowerShell) — guide simple
+----------------------------------------------------------------
+Prérequis :
+- Python 3.9+ installé
+- Connexion Internet (pour appeler l'API Hubeau si nécessaire)
 
-## Où regarder (fichiers importants)
-- Point d'entrée serveur : [web/FrontController.php](web/FrontController.php) — orchestre les routes.
-- Contrôleur principal des météothèques : [`Sae\Controllers\WLibraryController::see`](src/Controllers/WLibraryController.php) ([src/Controllers/WLibraryController.php](src/Controllers/WLibraryController.php)).
-- Pages visibles dans le navigateur :
-  - Accueil : [src/views/index/welcome.php](src/views/index/welcome.php)
-  - Liste des météothèques : [src/views/library/list.php](src/views/library/list.php)
-  - Détails station / mesures : [src/views/station/measures.php](src/views/station/measures.php)
-  - Comparaison de stations : [src/views/graph/compare.php](src/views/graph/compare.php)
-- Styles et ressources statiques :
-  - CSS (exemples) : [public/assets/styles/library/list.css](public/assets/styles/library/list.css), [public/assets/styles/graph/measures.css](public/assets/styles/graph/measures.css)
-  - Dossier statique fourni : [static/](static/) et templates HTML : [templates/](templates/)
-- Connexion base de données : [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) — paramètres de connexion à modifier si nécessaire.
+Étapes :
+1. Ouvrez PowerShell et placez-vous dans le dossier du projet :
 
----
+```powershell
+cd 'C:\Users\gedma\Downloads\Rendu_Sources_Edmaldo_Hasmir_Mohamed_Maylisse\Aquaservice'
+```
 
-## Fonctionnalités visibles pour un utilisateur
-- Parcourir la carte et les stations météo.
-- Voir les mesures historiques d'une station (températures, vents, pression...).
-- Comparer deux stations (graphiques, statistiques).
-- Créer, consulter, partager des météothèques (collections de stations/mesures).
-- Interface avec comptes utilisateurs (inscription, connexion, paramètres).
+2. (Optionnel mais recommandé) Créez et activez un environnement virtuel :
 
----
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-## Démarrage local simple (pas besoin d'être dev)
-1. Installer PHP (version 7.4+ recommandée).
-2. Placer le dossier du projet dans votre machine.
-3. Ouvrir un terminal à la racine du projet et lancer le serveur PHP intégré :
-   - php -S localhost:8000 -t web web/FrontController.php
-4. Ouvrir votre navigateur à l'adresse : http://localhost:8000
-5. Pages utiles à visiter :
-   - Accueil : /index/welcome
-   - Liste des météothèques : /library/list
-   - Carte : /index/map
+3. Installez les dépendances requises :
 
-Remarque : si l'application utilise une base de données, configurez les paramètres de connexion dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) avant de lancer l'app.
+```powershell
+pip install flask folium pandas requests geopy
+```
 
----
+4. Lancez l'application :
 
-## Petit tutoriel d'utilisation (non-technique)
-1. Ouvrez la page d'accueil.
-2. Explorez la carte ou cherchez une station.
-3. Sur la page d'une station, consultez les mesures et cliquez sur "Comparer" pour ajouter une autre station.
-4. Pour sauvegarder des stations/mesures, créez une météothèque depuis la rubrique "Météothèques" puis ajoutez-y des éléments.
-5. Si connecté, vous pouvez gérer vos météothèques (éditer, supprimer).
+```powershell
+python .\app.py
+```
 
----
+5. Ouvrez votre navigateur et rendez-vous sur : http://127.0.0.1:5000
 
-## Pour l'administrateur / personne qui gère le site
-- Les routes sont définies dans [web/FrontController.php](web/FrontController.php).
-- Pour savoir où sont générés les pages et la logique métier, voir les contrôleurs dans [src/Controllers/](src/Controllers/).
-- Requêtes vers la base : [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) et dépôts (repositories) sous [src/Models/Repository/](src/Models/Repository/).
+Remarques pratiques
+- Si vous avez le fichier `SAE_BASE.db` dans le dossier, l'application l'utilisera pour fournir des listes locales (régions, communes, stations). Sinon, certaines pages s'appuieront sur l'API en ligne Hubeau.
+- Si vous avez un pare-feu ou un antivirus, acceptez l'exécution de Python/serveur local.
 
----
+Que faire si ça ne fonctionne pas
+--------------------------------
+- Erreur d'import (ex. module introuvable) : relancer `pip install` pour installer le paquet manquant.
+- Page vide / erreurs : regardez la console PowerShell où vous avez lancé `python app.py`. Les traces d'erreur aident à identifier le problème.
+- Base de données manquante : si `SAE_BASE.db` n'est pas fournie, certaines pages dépendantes des données locales seront vides. L'application peut toutefois interroger l'API Hubeau pour d'autres listes.
 
-## Où modifier le contenu visible (templates / styles)
-- Templates HTML fournis (pour prototypes ou export) : [templates/](templates/)
-- CSS et images (front-end) : [static/](static/) ou [public/assets/styles/](public/assets/styles/) — exemples :
-  - Liste météothèques : [public/assets/styles/library/list.css](public/assets/styles/library/list.css)
-  - Graphiques : [public/assets/styles/graph/measures.css](public/assets/styles/graph/measures.css)
+Fichiers à modifier pour personnaliser
+-------------------------------------
+- Templates HTML : modifiez les fichiers dans `templates/` pour changer le texte ou l'ordre des éléments.
+- Styles : modifiez ou ajoutez des fichiers CSS dans `static/css/`.
+- Base de données : remplacez ou mettez à jour `SAE_BASE.db` si vous souhaitez fournir vos propres données.
 
----
+Prochaines améliorations possibles (suggestions)
+-----------------------------------------------
+- Ajouter un `requirements.txt` pour faciliter l'installation des dépendances.
+- Fournir un script d'initialisation de la base SQLite ou un export minimal de `SAE_BASE.db`.
+- Ajouter une section « Captures d'écran » dans le README pour aider les non-développeurs.
 
-## Questions fréquentes
-- "J'ai lancé le serveur mais la page est vide" — Vérifiez la console PHP (terminal) pour erreurs, et la configuration DB dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php).
-- "Où sont les données météo ?" — Elles proviennent soit de la base de données, soit d'API externes gérées par les accesseurs (voir [src/Models/Accessor/](src/Models/Accessor/)).
-
----
-
-## Contribution / contact rapide
-- Pour corriger un texte ou changer un style : éditez les fichiers dans [src/views/](src/views/) (HTML/PHP côté serveur) et [public/assets/styles/](public/assets/styles/) ou [static/](static/) (CSS).
-- Pour modifier la logique (ex. comment sont sauvées les météothèques) : contrôleurs dans [src/Controllers/](src/Controllers/) et dépôts dans [src/Models/Repository/](src/Models/Repository/).
-
----
-
-Si vous voulez, je peux générer un README plus détaillé (installation DB, scripts, captures d'écran) ou créer un exemple de configuration de base de données à placer dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php).
+Besoin d'aide ?
+--------------
+Si vous voulez, je peux :
+- Générer un `requirements.txt` automatiquement.
+- Créer des instructions pas-à-pas avec captures d'écran.
+- Vérifier et créer un petit script `run.bat` ou `run.ps1` pour démarrer l'app d'un double-clic.
