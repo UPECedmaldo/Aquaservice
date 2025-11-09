@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/carte.css')}}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>AQUASERVICE - Carte</title>
+</head>
+<body>
+
+<div class="fond-accueil" id="fond-accueil">
+{% include 'nav_template.html' %}    
+{% include 'carte_accueil.html' %}
+</div>
+{% include 'footer.html' %}
+
+
+<script>
+    // Votre script original pour le menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.right').classList.toggle('active');
+    });
+
+    // Nouveau script pour changer la position de la barre de navigation
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const accueilEnd = document.getElementById('fond-accueil').offsetHeight;
+        
+        if (window.scrollY > accueilEnd) {
+            header.classList.add('fixed');
+        } else {
+            header.classList.remove('fixed');
+        }
+
+        if (window.scrollY > 50) { // Changez la valeur si nécessaire
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/filtres_index.css')}}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>AQUASERVICE - Map</title>
+</head>
+<body>
+
+<div class="fond-accueil" id="fond-accueil">
+{% include 'side_bar.html' %}    
+{% include 'map.html' %}
+</div>
+
+
+<script>
+    // Nouveau script pour changer la position de la barre de navigation
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const accueilEnd = document.getElementById('fond-accueil').offsetHeight - 200;
+        
+        if (window.scrollY > accueilEnd) {
+            header.classList.add('fixed');
+        } else {
+            header.classList.remove('fixed');
+        }   
+
+        if (window.scrollY > 50) { // Changez la valeur si nécessaire
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+</body>
+</html>

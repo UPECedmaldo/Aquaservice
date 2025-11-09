@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --color: #b0fc97; /* On crée une variable pour ne pas répéter */
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    margin: 0;
+}
+
+
+/* filtres.css */
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #323232;
+}
+
+.titre-main {
+    font-size: 2.5em;
+    margin: 3% 0 2% 0;
+    color: #3d3d3d;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 1s;
+    position: relative;
+}
+
+.titre-main:hover {
+    color: black;
+}
+
+.titre-main:after {
+    content: "";
+    position: absolute;
+    background-color: rgb(0, 0, 0); /* Utilisez la variable --color */
+    height: 4px;
+    width: 0;
+    left: 0;
+    bottom: -8px;
+    transition: 0.7s;
+}
+
+.titre-main:hover:after {
+    width: 100%;
+}
+
+.retour {
+    font-size: 1em;
+    margin: 0 0 1% 0;
+    color: #3d3d3d;
+    text-align: center;
+    transition: 1s;
+    position: relative;
+    font-style: italic;
+}
+
+.retour:hover {
+    color: black;
+}
+
+.retour:after {
+    content: "";
+    position: absolute;
+    background-color: rgb(0, 0, 0); /* Utilisez la variable --color */
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: -8px;
+    transition: 0.7s;
+}
+
+.retour:hover:after {
+    width: 100%;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+input[type="submit"] {
+    background-color: var(--color);
+    color: #555;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.8s;
+    margin-right: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #8bd888;
+}
+
+button {
+    background-color: var(--color);
+    color: #555;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.8s;
+    margin-right: 10px;
+}
+button:hover {
+    background-color: #8bd888;
+}
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* New styles for reset button */
+button#resetButton {
+    background-color: #EA4335; /* Google's red */
+    color: white;
+}
+button#resetButton:hover {
+    background-color: #CC392B; /* Slightly darker red for hover effect */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f1f1f1;
+    color: #555;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#filterForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 5% 0;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    border-color: var(--color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(176, 252, 151, 0.5);
+}

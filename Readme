@@ -1,0 +1,89 @@
+# Aether — Guide rapide et non-technique
+
+Ce dépôt contient une application web de météo (Aether) permettant d'explorer des stations météo, consulter et comparer des mesures, et créer/partager des "météothèques" (bibliothèques de stations/mesures).
+
+Ce guide explique le contexte, l'organisation des fichiers et comment démarrer l'application de manière simple, même si vous n'êtes pas développeur.
+
+---
+
+## Contexte (en une phrase)
+Aether centralise des données météo (stations, mesures) et fournit une interface pour les visualiser, comparer et sauvegarder des collections personnalisées (météothèques).
+
+---
+
+## Où regarder (fichiers importants)
+- Point d'entrée serveur : [web/FrontController.php](web/FrontController.php) — orchestre les routes.
+- Contrôleur principal des météothèques : [`Sae\Controllers\WLibraryController::see`](src/Controllers/WLibraryController.php) ([src/Controllers/WLibraryController.php](src/Controllers/WLibraryController.php)).
+- Pages visibles dans le navigateur :
+  - Accueil : [src/views/index/welcome.php](src/views/index/welcome.php)
+  - Liste des météothèques : [src/views/library/list.php](src/views/library/list.php)
+  - Détails station / mesures : [src/views/station/measures.php](src/views/station/measures.php)
+  - Comparaison de stations : [src/views/graph/compare.php](src/views/graph/compare.php)
+- Styles et ressources statiques :
+  - CSS (exemples) : [public/assets/styles/library/list.css](public/assets/styles/library/list.css), [public/assets/styles/graph/measures.css](public/assets/styles/graph/measures.css)
+  - Dossier statique fourni : [static/](static/) et templates HTML : [templates/](templates/)
+- Connexion base de données : [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) — paramètres de connexion à modifier si nécessaire.
+
+---
+
+## Fonctionnalités visibles pour un utilisateur
+- Parcourir la carte et les stations météo.
+- Voir les mesures historiques d'une station (températures, vents, pression...).
+- Comparer deux stations (graphiques, statistiques).
+- Créer, consulter, partager des météothèques (collections de stations/mesures).
+- Interface avec comptes utilisateurs (inscription, connexion, paramètres).
+
+---
+
+## Démarrage local simple (pas besoin d'être dev)
+1. Installer PHP (version 7.4+ recommandée).
+2. Placer le dossier du projet dans votre machine.
+3. Ouvrir un terminal à la racine du projet et lancer le serveur PHP intégré :
+   - php -S localhost:8000 -t web web/FrontController.php
+4. Ouvrir votre navigateur à l'adresse : http://localhost:8000
+5. Pages utiles à visiter :
+   - Accueil : /index/welcome
+   - Liste des météothèques : /library/list
+   - Carte : /index/map
+
+Remarque : si l'application utilise une base de données, configurez les paramètres de connexion dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) avant de lancer l'app.
+
+---
+
+## Petit tutoriel d'utilisation (non-technique)
+1. Ouvrez la page d'accueil.
+2. Explorez la carte ou cherchez une station.
+3. Sur la page d'une station, consultez les mesures et cliquez sur "Comparer" pour ajouter une autre station.
+4. Pour sauvegarder des stations/mesures, créez une météothèque depuis la rubrique "Météothèques" puis ajoutez-y des éléments.
+5. Si connecté, vous pouvez gérer vos météothèques (éditer, supprimer).
+
+---
+
+## Pour l'administrateur / personne qui gère le site
+- Les routes sont définies dans [web/FrontController.php](web/FrontController.php).
+- Pour savoir où sont générés les pages et la logique métier, voir les contrôleurs dans [src/Controllers/](src/Controllers/).
+- Requêtes vers la base : [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php) et dépôts (repositories) sous [src/Models/Repository/](src/Models/Repository/).
+
+---
+
+## Où modifier le contenu visible (templates / styles)
+- Templates HTML fournis (pour prototypes ou export) : [templates/](templates/)
+- CSS et images (front-end) : [static/](static/) ou [public/assets/styles/](public/assets/styles/) — exemples :
+  - Liste météothèques : [public/assets/styles/library/list.css](public/assets/styles/library/list.css)
+  - Graphiques : [public/assets/styles/graph/measures.css](public/assets/styles/graph/measures.css)
+
+---
+
+## Questions fréquentes
+- "J'ai lancé le serveur mais la page est vide" — Vérifiez la console PHP (terminal) pour erreurs, et la configuration DB dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php).
+- "Où sont les données météo ?" — Elles proviennent soit de la base de données, soit d'API externes gérées par les accesseurs (voir [src/Models/Accessor/](src/Models/Accessor/)).
+
+---
+
+## Contribution / contact rapide
+- Pour corriger un texte ou changer un style : éditez les fichiers dans [src/views/](src/views/) (HTML/PHP côté serveur) et [public/assets/styles/](public/assets/styles/) ou [static/](static/) (CSS).
+- Pour modifier la logique (ex. comment sont sauvées les météothèques) : contrôleurs dans [src/Controllers/](src/Controllers/) et dépôts dans [src/Models/Repository/](src/Models/Repository/).
+
+---
+
+Si vous voulez, je peux générer un README plus détaillé (installation DB, scripts, captures d'écran) ou créer un exemple de configuration de base de données à placer dans [src/Models/Accessor/SQLAccessor.php](src/Models/Accessor/SQLAccessor.php).

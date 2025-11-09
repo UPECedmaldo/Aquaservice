@@ -1,0 +1,66 @@
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav_annexe.css')}}">
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="/"><h1><span class="vert">Aqua</span>Service</h1></a>
+            <div class="menu-toggle">
+                <i class='bx bx-menu'></i>
+                <i class="bx bx-x close-icon"></i>
+            </div>
+        </nav>
+    </header>
+    <div class="menu">
+        <div class="menu-content">
+            <div class="menu-left">
+                <ul>
+                    <li><a id="titre-menu">Nos Rubriques</a></li>
+                    <li><a href="{{url_for('map')}}">Nos Cartes</a></li>
+                    <li><a href="{{url_for('filtres')}}">Filtrage</a></li>
+                    <li><a href="{{url_for('carte')}}">Rechercher</a></li>
+                    <li><a href="{{url_for('contact')}}">Contact</a></li>
+                    <li><a href="{{url_for('apropos')}}">A Propos</a></li>
+                </ul>
+                
+            </div>
+            <div class="menu-right">
+                <div class="menu-boxes">
+                    <div class="menu-box">
+                        <a href="{{url_for('map')}}"><img src="{{url_for('static', filename='images/notre-carte.png')}}" alt="Image 1">
+                        <h3>Notre Carte</h3></a>
+                    </div>
+                    <div class="menu-box">
+                        <a href="{{url_for('filtres')}}"><img src="{{url_for('static', filename='images/filtrage.png')}}" alt="Image 1">
+                        <h3>Filtrage</h3></a>
+                    </div>
+                    
+                    <div class="menu-box">
+                        <a href="{{url_for('carte')}}"><img src="{{url_for('static', filename='images/recherche.png')}}" alt="Image 1">
+                        <h3>Rechercher</h3></a>
+                    </div>
+                    <div class="menu-box">
+                        <a href="https://www.eaufrance.fr/les-rivieres" target="_blank"><img src="{{url_for('static', filename='images/Logo-eaufrance.png')}}" alt="Image 1">
+                        <h3>Eau France</h3></a>
+                    </div>
+                    <div class="menu-box">
+                        <a href="https://www.u-pec.fr/" target="_blank"><img src="{{url_for('static', filename='images/Logo-UPEC.png')}}" alt="Image 1">
+                        <h3>UPEC</h3></a>
+                    </div>
+                    <div class="menu-box">
+                        <a href="https://hubeau.eaufrance.fr/page/api-qualite-cours-deau" target="_blank"><img src="{{url_for('static', filename='images/Logo-hubeau-blue.png')}}" alt="Image 1">
+                        <h3>Hubeau</h3></a>
+                    </div>
+                    <!-- Ajoutez d'autres images ici -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.menu').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

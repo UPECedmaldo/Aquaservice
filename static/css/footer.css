@@ -1,0 +1,44 @@
+footer {
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10% 2% 3% 2%;
+    justify-content: space-around;
+    transition: 0.5s;
+    color: white; /* Changement de couleur du texte en blanc */
+}
+
+footer h3 {
+    transition: 0.5s;
+    color: white; /* Changement de couleur du titre en blanc */
+    margin: 0 0 20px 0;
+}
+
+footer p {
+    margin: 15px 0 15px 0;
+    transition: 0.5s;
+    color: #ccc;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+footer p:hover {
+    color: white;
+}
+
+/* Style pour le copyright */
+footer .copyright {
+    width: 100%;
+    text-align: center;
+    padding-top: 10%; /* Espacement supplémentaire par rapport aux autres colonnes */
+}
+
+/* Style pour la ligne horizontale */
+footer .divider {
+    width: 100%;
+    margin: 10% 0 0 0; /* Espacement autour de la ligne horizontale */
+    border: none;
+    border-top: 1px solid #ccc; /* Couleur de la ligne horizontale */
+}
+
+

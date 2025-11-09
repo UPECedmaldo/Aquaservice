@@ -1,0 +1,142 @@
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/side_bar.css')}}" />
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Dashboard Sidebar Menu</title> 
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="/static/images/logo.png" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">AQUASERVICE</span>
+                    <span class="station">Visualisation</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+              <form action="/map_post" method="post">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                      <input type="text" class="form-control" id="commune" name="commune" list="communeList" placeholder="Entrez le nom de la commune" value="{{ selected_commune }}">
+                      <datalist id="communeList">
+                          {% for code,nom in communes %}
+                              <option value="{{ nom }}">{{ code }}</option>
+                          {% endfor %}
+                      </datalist>
+                      <li class="nav-link">
+                          <i class='bx bx-ruler icon'></i>
+                        <div class="form-group">
+                          <select class="form-control" id="radius" name="radius">
+                              <option value="2" selected>2 km</option>
+                              <option value="5">5 km</option>
+                              <option value="10">10 km</option>
+                              <option value="15">15 km</option>
+                              <option value="25">25 km</option>
+                          </select>
+                        </li>
+                    </div>
+                    </form>
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="http://127.0.0.1:5000">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Acceuil</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="{{url_for('filtres')}}">
+                            <i class='bx bx-filter icon' ></i>
+                            <span class="text nav-text">Filtre</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="{{url_for('carte')}}">
+                            <i class='bx bx-current-location icon'></i>
+                            <span class="text nav-text">Rechercher Station</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="{{url_for('contact')}}">
+                            <i class='bx bxs-contact icon' ></i>
+                            <span class="text nav-text">Contact</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                      <a href="{{url_for('apropos')}}">
+                          <i class='bx bx-group icon' ></i>
+                          <span class="text nav-text">A Propos</span>
+                      </a>
+                  </li>
+                </ul>
+            
+            <div class="bottom-content">
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+
+                    <span class="mode-text text">Mode Nuit</span>
+                    
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+              </div>
+            </div>
+        </div>
+
+    </nav>
+    <script>
+      const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+      toggle.addEventListener("click" , () =>{
+          sidebar.classList.toggle("close");
+      })
+
+      searchBtn.addEventListener("click" , () =>{
+          sidebar.classList.remove("close");
+      })
+
+      modeSwitch.addEventListener("click" , () =>{
+          body.classList.toggle("dark");
+          
+          if(body.classList.contains("dark")){
+              modeText.innerText = "Mode Jour";
+          }else{
+              modeText.innerText = "Mode Nuit";
+              
+          }
+      });
+
+    </script>
+
+</body>
+</html>

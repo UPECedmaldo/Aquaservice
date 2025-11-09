@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/filtres.css')}}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>AQUASERVICE - Filtres</title>
+</head>
+{% include 'nav_template_annexe.html' %}    
+<body>
+    <h1  class="titre-main" >Stations des cours d'eau</h1>
+    <a href="{{url_for('filtres')}}" class="retour"><p>Retourner à l'accueil</p></a>
+
+    <form id="filterForm" action="/station" method="GET">
+        <label for="nom_region">Région:</label>
+        <input type="text" id="nom_region" name="nom_region" list="regionsList" placeholder="-- Sélectionnez une région --" onchange="updateDepartements()">
+        <datalist id="regionsList">
+            {% for code,nom in regions %}
+                <option value="{{ nom }}">{{ code }}</option>
+            {% endfor %}
+        </datalist>
+    
+        <label for="nom_departement">Département:</label>
+        <input type="text" id="nom_departement" name="nom_departement" list="departementsList" placeholder="-- Sélectionnez un département --" onchange="updateCommunes()">
+        <datalist id="departementsList">
+            {% for code,nom in departements %}
+                <option value="{{ nom }}">{{ code }}</option>
+            {% endfor %}
+        </datalist>
+    
+        <label for="nom_commune">Commune:</label>
+        <input type="text" id="nom_commune" name="nom_commune" list="communesList" placeholder="-- Sélectionnez une commune --">
+        <datalist id="communesList">
+            {% for code,nom in communes %}
+                <option value="{{ nom }}">{{ code }}</option>
+            {% endfor %}
+        </datalist>
+    
+        <label for="date_prelevement">Date de Prélèvement:</label>
+        <input type="date" name="date_prelevement" id="date_prelevement">
+    
+        <label for="page">Page:</label>
+        <input type="text" name="page" id="page" value="{{ current_page }}" style="border: none; outline: none; background-color: transparent; width: 100px;">
+        
+    
+        <input type="submit" value="Filter">
+        
+        <button type="button" id="prevPage" {% if current_page == 1 %}disabled{% endif %}>Previous</button>
+        <button type="button" id="nextPage" {% if current_page == total_pages %}disabled{% endif %}>Next</button>
+        <button type="button" id="resetButton">Reset</button>
+    </form>
+    
+
+    <!-- Tableau des stations -->
+    <table id="resultTable" border="1">
+        <thead>
+            <tr>
+                <th>Code Station</th>
+                <th>Nom Station</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>URI Station</th>
+                <th>Nom Cours Eau</th>
+                <th>Nom Bassin</th>
+                <th>Date Création</th>
+                <th>Date Arrêt</th>
+                <th>Commune</th>
+                <th>Département</th>
+                <th>Région</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for station in stations %}
+            <tr>
+                <td>{{ station.code_station }}</td>
+                <td>{{ station.libelle_station }}</td>
+                <td>{{ station.longitude }}</td>
+                <td>{{ station.latitude }}</td>
+                <td><a href="{{ station.uri_station }}">Lien</a></td>
+                <td>{{ station.nom_cours_eau }}</td>
+                <td>{{ station.nom_bassin }}</td>
+                <td>{{ station.date_creation }}</td>
+                <td>{{ station.date_arret }}</td>
+                <td>{{ station.libelle_commune }}</td>
+                <td>{{ station.libelle_departement }}</td>
+                <td>{{ station.libelle_region }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Script pour la pagination -->
+    <script>
+        document.getElementById('prevPage').addEventListener('click', function() {
+            var pageInput = document.getElementById('page');
+            var currentPage = parseInt(pageInput.value);
+            if (currentPage > 1) {
+                pageInput.value = currentPage - 1;
+                document.getElementById('filterForm').submit();
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', function() {
+            var pageInput = document.getElementById('page');
+            var currentPage = parseInt(pageInput.value);
+            var totalPages = parseInt("{{ total_pages }}");
+            if (currentPage < totalPages) {
+                pageInput.value = currentPage + 1;
+                document.getElementById('filterForm').submit();
+            }
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            window.location.href = '/station';
+        });
+
+        window.addEventListener('load', function() {
+            if (window.location.search.includes('page=')) {
+                document.getElementById('resultTable').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        function updateDepartements() {
+            const region = document.getElementById('nom_region').value;
+            fetch(`/get_departements?region=${encodeURIComponent(region)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const datalist = document.getElementById('departementsList');
+                    datalist.innerHTML = '';
+                    data.forEach(departement => {
+                        const option = document.createElement('option');
+                        option.value = departement.nom;
+                        datalist.appendChild(option);
+                    });
+                    document.getElementById('nom_departement').value = '';
+                    updateCommunes();  // Reset communes when region changes
+                });
+        }
+    
+        function updateCommunes() {
+            const departement = document.getElementById('nom_departement').value;
+            fetch(`/get_communes?departement=${encodeURIComponent(departement)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const datalist = document.getElementById('communesList');
+                    datalist.innerHTML = '';
+                    data.forEach(commune => {
+                        const option = document.createElement('option');
+                        option.value = commune.nom;
+                        datalist.appendChild(option);
+                    });
+                    document.getElementById('nom_commune').value = '';
+                });
+        }
+    </script>
+</body>
+</html>

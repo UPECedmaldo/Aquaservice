@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --color: #b0fc97; /* On crée une variable pour ne pas répéter */
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: white;
+    overflow-x: hidden; /* Empêcher le défilement horizontal */
+}
+
+body::-webkit-scrollbar {
+    width: 12px; /* Largeur de la scrollbar */
+    background-color: #13141d; /* Couleur de la piste de la scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #cefec0; /* Couleur du pouce de la scrollbar */
+}
+
+/* Styles lorsque la souris survole le pouce de la scrollbar */
+body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color); /* Couleur différente au survol */
+}
+
+.fond-accueil {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url("../images/riviere.jpg");
+    background-size: cover; /* Assure que l'image couvre tout l'élément */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    height: 120vh; /* Assure que l'élément main prend toute la hauteur de la page */
+    background-attachment: fixed;
+    position: relative;
+    
+}
+
+.fond-accueil::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px); /* Adds blur to the background */
+    z-index: 1;
+}
+
+main {
+    padding: 0 0 0 5%;
+}
+
+main * {
+    z-index: 2;
+}
+
+.container {
+    margin: 5% 5% 5% 0; /* Ajuster les marges pour éviter l'espace blanc */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+}
+
+.main {
+    width: calc(45% - 2.5%); /* Ajuster la largeur et tenir compte des marges */
+    padding-right: 2.5%; /* Ajouter un espacement à droite */
+    
+}
+
+.main h2 {
+    margin: 0;
+    font-size: 3.5vw;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.main p {
+    font-size: 1.3vw;
+    font-weight: 300;
+    color: #dadada;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.custom-button {
+    background-image: linear-gradient(to right, transparent 50%, var(--color) 50%);
+    background-size: 200% 100%;
+    background-position: left bottom;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s, color 0.5s;
+    background-color: transparent; /* Fond transparent par défaut */
+}
+
+.custom-button:hover {
+    background-position: right bottom;
+    color: black;
+}
+
+.main h2,
+.main p,
+.button-container {
+    margin-bottom: 4%;
+}
+
+.image-main {
+    width: calc(45% - 2.5%); /* Ajuster la largeur et tenir compte des marges */
+    padding-left: 2.5%; /* Ajouter un espacement à gauche */
+    margin-top: -4%;
+}
+
+.image-main img {
+    max-width: 80%; /* Ajuster la largeur selon votre préférence */
+    object-fit: cover; /* S'assurer que l'image couvre tout le conteneur */
+    border-radius: 70%; /* Rendre l'image circulaire */
+    object-fit: cover; /* S'assurer que l'image couvre tout le conteneur */
+    transition: 0.3s;
+}
+
+.image-main img:hover {
+    transform: scale(1.02);
+}
+
+
+.image-presentation {
+    width: calc(45% - 2.5%); /* Ajuster la largeur et tenir compte des marges */
+    padding-left: 2.5%; /* Ajouter un espacement à gauche */
+}
+
+.image-presentation img {
+    max-width: 80%; /* Ajuster la largeur selon votre préférence */
+    border-radius: 70%; /* Rendre l'image circulaire */
+    object-fit: cover; /* S'assurer que l'image couvre tout le conteneur */
+    transition: 1s;
+}
+
+.image-presentation img:hover {
+    transform: scale(1.05);
+}
+
+.vert {
+    color: var(--color);
+}
+
+.sections {
+    background-color: #ffffff;
+    color: #090714;
+}
+
+.partie {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    background: #f9f9f9;
+    color: #323232;
+    text-align: center;
+}
+
+.partie h2 {
+    text-transform: uppercase;
+    font-size: 2em;
+    color: #323232;
+    transition: 0.7s;
+}
+
+.partie h2:hover {
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Adds text shadow for better readability */
+}
+
+.partie h3 {
+    font-size: 1.7em;
+    margin: 5% auto;
+    width: 50%;
+    padding: 4%;
+    background-color: rgba(255, 255, 255, 0.737);
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.6s ease-in-out;
+    font-weight: 400;
+}
+
+.partie h3:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.definition {
+    display: flex;
+    align-items: center;
+}
+.quote {
+    font-size: 1.5em;
+    margin: 0 auto;
+    width: 60%;
+    font-style: italic;
+    color: #555;
+}
+
+.video-container {
+    width: 100%;
+    position: relative;
+    padding-bottom: 20%; /* Aspect ratio changed for smaller height */
+    height: 0;
+    overflow: hidden;
+    max-width: 35%; /* Further reduced width */
+    margin: 2% auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+
+.partie-transition {
+    padding: 7%
+    
+}
+
+.partie-img {
+    background: url("../images/riviere.jpg") no-repeat center center;
+    background-size: cover;
+    height: 60vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    overflow: hidden;
+    /* Parallax Effect */
+    background-attachment: fixed;
+}
+
+.partie-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); /* Adds blur to the background */
+    z-index: 1;
+}
+
+.partie-img h2,
+.partie-img p {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-family: 'Montserrat', sans-serif; /* Use a modern font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds text shadow for better readability */
+}
+
+.partie-img h2 {
+    text-transform: uppercase;
+    font-size: 2.5em; /* Increased font size for better visibility */
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.3s; /* Animation with delay */
+}
+
+.partie-img p {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 1.5em; /* Increased font size */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.6s; /* Animation with delay */
+}
+
+
+
+.partie-carte {
+    
+    padding: 8% 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9; /* Light background for contrast */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+}
+
+.partie-carte .textes {
+    padding: 30px 0;
+    width: calc(45% - 2.5%); /* Ajuster la largeur et tenir compte des marges */
+    padding-right: 2.5%; /* Ajouter un espacement à droite */
+}
+
+.partie-carte .textes h2 {
+    margin: 0;
+    font-size: 3.5vw;
+}
+
+.partie-carte .textes p {
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #000000;
+    font-style: italic;
+}
+
+.textes p, .textes h2 {
+    margin: 5% 0 5% 0;
+}
+
+.carte-button {
+    background-image: linear-gradient(to right, transparent 50%, var(--color) 50%);
+    background-size: 200% 100%;
+    background-position: left bottom;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s, color 0.5s;
+    background-color: transparent; /* Fond transparent par défaut */
+}
+
+.carte-button:hover {
+    background-position: right bottom;
+    color: black;
+}
+
+.partie2 {
+    background: url("../images/riviere4.jpg") no-repeat center center;
+    background-size: cover;
+    height: auto; /* Ajuste la hauteur selon le contenu */
+    position: relative;
+    padding: 5% 0;
+    overflow: hidden;
+    /* Parallax Effect */
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.partie2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+.partie2 * {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titre-p2 {
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10%;
+    width: 100%;
+}
+
+.titre-p2 h2 {
+    font-size: 3.5vw;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+.titre-p2 p {
+    font-size: 2vw;
+    margin: 0;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.6s;
+}
+
+.boxes {
+    display: flex;
+    padding: 3% 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 3%;
+    border-radius: 8px;
+    width: 25%;
+    margin: 2% auto;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.box p {
+    font-size: 1.2em;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.9s;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color);
+}
+
+.button-p2 {
+    text-align: center;
+    margin: 5% auto;
+    width: 100%;
+}
+
+.detail-partie {
+    padding: 10% 0 15% 0;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.detail-partie h2 {
+    font-size: 3em;
+    margin-bottom: 4%;
+    color: #13141d;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+.detail-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+
+.detail-box {
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2%;
+    margin: 0 auto;
+    max-width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 30%; /* Taille fixe pour les boxes */
+    height: 30%; /* Hauteur fixe pour les boxes */
+    overflow: hidden; /* Cacher le texte débordant */
+    position: relative; /* Pour positionner les éléments enfants par rapport à cette box */
+}
+
+.detail-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.detail-box img {
+    width: 100%;
+    border-radius: 8px;
+    height: 30vh; /* Taille fixe pour les images */
+    object-fit: cover; /* Redimensionner l'image pour couvrir toute la zone */
+    filter: brightness(0.8); /* Rendre l'image un peu sombre */
+}
+
+
+
+.div-date {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em 0;
+    color: #666666;
+    font-size: 0.9em;
+}
+
+.detail-texte p {
+    font-size: 1em;
+    color: #333333;
+    line-height: 1.6em;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards 0.6s;
+    max-width: calc(100% - 20px); /* Laisser un espace de 20px pour les marges */
+    white-space: normal; /* Permettre au texte de passer à la ligne */
+    overflow: hidden; /* Cacher le texte débordant */
+    text-overflow: ellipsis; /* Afficher des points de suspension (...) pour indiquer du texte coupé */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Nombre de lignes avant l'ellipsis */
+    -webkit-box-orient: vertical;
+}
+
+
+/* Keyframes for animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

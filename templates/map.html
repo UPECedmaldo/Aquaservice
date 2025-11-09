@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/map.css')}}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div id="map">
+            <!-- Contenu de la carte initial -->
+            {{ initial_map_html|safe }}
+
+            <!-- Section pour la liste des stations -->
+            {% if show_square %}
+                <div class="square" id="station-list">
+                    <h4>Stations <span class="close-icon-map" onclick="toggleStationList();">&times;</span></h4>
+                    <ul>
+                        {% for station in stations %}
+                            <li class="station-name">
+                                <a href="#" onclick="event.preventDefault(); showSecondRectangle('{{ station }}');" style="text-decoration: none; color: black;">{{ station }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Second rectangle pour les détails de la station -->
+                <div class="square" id="second-rectangle">
+                    <h4 id="station-title">Détails de la Station</h4>
+                    <p id="station-details">Informations supplémentaires ici...</p>
+                    <button class="btn btn-secondary" onclick="hideSecondRectangle();">Retour</button>
+                </div>
+            {% endif %}
+
+            <!-- Bouton pour afficher/masquer la liste des stations -->
+            <div id="toggle-stations" onclick="toggleStationList();">Afficher la liste</div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        // Fonction pour afficher les détails de la station sélectionnée
+        function showSecondRectangle(stationName) {
+            document.getElementById('station-list').style.display = 'none';
+            document.getElementById('second-rectangle').style.display = 'block';
+            document.getElementById('station-title').innerText = stationName;
+
+            // Masquer le bouton pour afficher/masquer la liste des stations
+            document.getElementById('toggle-stations').style.display = 'none';
+
+            // Exemple de requête fetch pour récupérer les détails de la station
+            fetch('/station_details', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({station_name: stationName})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('station-details').innerText = data.error;
+                } else {
+                    let details = '';
+                    if (data.code_station !== 'Inconnu') details += `Code Station: ${data.code_station}<br>`;
+                    if (data.lien_station !== 'Inconnu') details += `Lien Station: <a href="${data.lien_station}" target="_blank">${data.lien_station}</a><br>`;
+                    if (data.date_creation !== 'Inconnu') details += `Date de Création: ${data.date_creation}<br>`;
+                    if (data.date_maj !== 'Inconnu') details += `Date de Mise à Jour: ${data.date_maj}<br>`;
+                    if (data.date_arret !== 'Inconnu') details += `Date d'Arrêt: ${data.date_arret}<br>`;
+                    if (data.nom_bassin !== 'Inconnu') details += `Nom du Bassin: ${data.nom_bassin}<br>`;
+                    if (data.lien_bassin !== 'Inconnu') details += `Lien Bassin: <a href="${data.lien_bassin}" target="_blank">${data.lien_bassin}</a><br>`;
+                    if (data.nom_cours_eau !== 'Inconnu') details += `Nom du Cours d'eau: ${data.nom_cours_eau}<br>`;
+                    if (data.lien_cours_eau !== 'Inconnu') details += `Lien Cours d'eau: <a href="${data.lien_cours_eau}" target="_blank">${data.lien_cours_eau}</a>`;
+                    document.getElementById('station-details').innerHTML = details;
+                }
+            })
+            .catch(error => {
+                document.getElementById('station-details').innerText = 'Erreur lors de la récupération des détails.';
+            });
+        }
+
+        // Fonction pour masquer le deuxième rectangle et afficher la liste des stations
+        function hideSecondRectangle() {
+            document.getElementById('second-rectangle').style.display = 'none';
+            document.getElementById('station-list').style.display = 'block';
+            document.getElementById('station-title').innerText = 'Détails de la Station';
+            document.getElementById('station-details').innerText = 'Informations supplémentaires ici...';
+
+            // Afficher à nouveau le bouton pour afficher/masquer la liste des stations
+            document.getElementById('toggle-stations').style.display = 'block';
+        }
+
+        // Fonction pour masquer ou afficher la liste des stations
+        function toggleStationList() {
+            var stationList = document.getElementById('station-list');
+            var toggleButton = document.getElementById('toggle-stations');
+
+            if (stationList.style.display === 'none') {
+                // Afficher la liste des stations
+                stationList.style.display = 'block';
+                toggleButton.innerText = 'Cacher la liste';
+            } else {
+                // Masquer la liste des stations
+                stationList.style.display = 'none';
+                toggleButton.innerText = 'Afficher la liste';
+            }
+        }
+    </script>
+</body>
+</html>

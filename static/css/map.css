@@ -1,0 +1,47 @@
+body{
+    overflow-y: hidden;
+}
+
+#map {
+    position: relative;
+    height: 600px;
+}
+.square {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    height: 60%;
+    background-color: white;
+    border: 2px solid black;
+    z-index: 1000;
+    padding: 10px;
+    overflow-y: auto;
+}
+.station-name {
+    font-size: 12px;
+}
+.close-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: red;
+}
+#toggle-stations {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: white;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+}
+#toggle-stations:hover {
+    background-color: #f0f0f0;
+}
+#second-rectangle {
+    display: none;
+}

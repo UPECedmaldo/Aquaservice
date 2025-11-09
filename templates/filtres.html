@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Accueil</title>
+</head>
+<body>
+    <div class="filtres-main">
+        <h1>Les Différents Filtres</h1>
+        <h2>Sélectionnez une table :</h2>
+        <ul>
+            <li><a href="{{ url_for('analyse') }}">Analyses</a></li>
+            <li><a href="{{ url_for('operations') }}">Opérations</a></li>
+            <li><a href="{{ url_for('station') }}">Stations</a></li> <!-- Ajout du lien vers les stations -->
+            <li><a href="{{ url_for('conditions') }}">Conditions Environnementales</a></li>
+        </ul>
+    </div>
+    
+</body>
+</html>

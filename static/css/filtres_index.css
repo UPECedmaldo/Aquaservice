@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; /* Couleur de fond gris clair */
+    color: #333; /* Couleur de texte grise */
+}
+
+.filtres-main {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ffffffdc; /* Couleur de fond blanche pour la boîte principale */
+    padding: 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Ombre plus claire */
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.filtres-main h1 {
+    text-align: center;
+    color: #6e7070; /* Couleur verte pour le titre principal */
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    animation: slideInDown 1s ease-in-out;
+}
+
+@keyframes slideInDown {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+}
+
+.filtres-main h2 {
+    color: #666867; /* Couleur verte pour le sous-titre */
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    animation: slideInUp 1s ease-in-out;
+}
+
+@keyframes slideInUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+}
+
+.filtres-main ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filtres-main ul li {
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.filtres-main ul li a {
+    display: block;
+    color: #333; /* Couleur de texte grise pour les liens */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: all 0.5s ease-in-out;
+}
+
+.filtres-main ul li a:hover {
+    background-color: #2ecc71; /* Couleur verte pour le fond des liens au survol */
+    color: #fff; /* Couleur de texte blanche pour les liens au survol */
+    transform: scale(1.03);
+}

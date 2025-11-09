@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>AQUASERVICE - Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .contact-main {
+            max-width: 800px;
+            margin: 10% auto;
+            background-color: #ffffffdc;
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .contact-main h1 {
+            text-align: center;
+            color: #6e7070;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: slideInDown 1s ease-in-out;
+        }
+        @keyframes slideInDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-form label {
+            margin-bottom: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .contact-form button {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .contact-form button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+{% include 'nav_template_annexe.html' %}
+    <div class="contact-main">
+        <h1>Contactez-nous</h1>
+        <p>Si vous avez des questions ou des commentaires, n'hésitez pas à nous contacter en utilisant le formulaire ci-dessous. Nous vous répondrons dans les plus brefs délais.</p>
+        <br>
+        <form class="contact-form">
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+{% include 'footer.html' %}
+
+<script>
+    // Nouveau script pour changer la position de la barre de navigation
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const accueilEnd = document.getElementById('fond-accueil').offsetHeight - 200;
+        
+        if (window.scrollY > accueilEnd) {
+            header.classList.add('fixed');
+        } else {
+            header.classList.remove('fixed');
+        }   
+
+        if (window.scrollY > 50) { // Changez la valeur si nécessaire
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+
+</body>
+</html>

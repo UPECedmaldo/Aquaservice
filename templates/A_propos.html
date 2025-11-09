@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>AQUASERVICE - A Propos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2; /* Couleur de fond gris clair */
+            color: #333; /* Couleur de texte grise */
+        }
+        
+        .apropos-main {
+            max-width: 800px;
+            margin: 10% auto;
+            background-color: #ffffffdc; /* Couleur de fond blanche pour la boîte principale */
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Ombre plus claire */
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .apropos-main h1 {
+            text-align: center;
+            color: #6e7070; /* Couleur verte pour le titre principal */
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: slideInDown 1s ease-in-out;
+        }
+        
+        @keyframes slideInDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+        
+        .apropos-main h2 {
+            color: #666867; /* Couleur verte pour le sous-titre */
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            animation: slideInUp 1s ease-in-out;
+        }
+        
+        @keyframes slideInUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+        
+        .apropos-main ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .apropos-main ul li {
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .apropos-main ul li a {
+            display: block;
+            color: #333; /* Couleur de texte grise pour les liens */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .apropos-main ul li a:hover {
+            background-color: #2ecc71; /* Couleur verte pour le fond des liens au survol */
+            color: #fff; /* Couleur de texte blanche pour les liens au survol */
+            transform: scale(1.1);
+        }
+        
+    </style>
+</head>
+<body>
+{% include 'nav_template_annexe.html' %}    
+
+    <div class="apropos-main">
+        <h1>À propos de nous</h1>
+        <div class="about-content">
+            <h2>Qui sommes-nous ?</h2>
+            <p>Nous sommes une entreprise spécialisée dans Informatique. Notre équipe est composée de quatre personnes passionnés et expérimentés, toujours prêts à relever de nouveaux défis.</p>
+            <h2>Notre mission</h2>
+            <p>Notre mission est de fournir des solutions innovantes et de haute qualité à nos clients, en répondant à leurs besoins spécifiques et en dépassant leurs attentes.</p>
+            <h2>Nos valeurs</h2>
+            <p>Nos valeurs sont l'intégrité, la créativité, l'excellence et le respect. Nous nous engageons à les appliquer dans toutes nos actions et décisions.</p>
+        </div>
+    </div>
+
+{% include 'footer.html' %}
+
+<script>
+    // Nouveau script pour changer la position de la barre de navigation
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const accueilEnd = document.getElementById('fond-accueil').offsetHeight - 200;
+        
+        if (window.scrollY > accueilEnd) {
+            header.classList.add('fixed');
+        } else {
+            header.classList.remove('fixed');
+        }   
+
+        if (window.scrollY > 50) { // Changez la valeur si nécessaire
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+</body>
+</html>

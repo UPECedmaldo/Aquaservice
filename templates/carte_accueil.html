@@ -1,0 +1,31 @@
+<div class="fond-accueil-overlay"></div>
+    <div class="section-carte">
+        <div class="container-recherche">
+            <div class="recherche">
+                <h2>Recherche</h2>
+                <form action="/carte" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id='search' name="select_departement" list="departementList" placeholder="Entrez le nom du département pour avoir les informations">
+                        <datalist id="departementList">
+                            {% for code, nom in departements %}
+                                <option value="{{ nom }}">{{ code }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                </form>
+            </div>
+        
+        <div class="container-main-carte">
+            <div class="container-carte">
+                <iframe src="{{ url_for('carte_svg') }}" id="carteIframe" name="carteIframe"></iframe>
+            </div>
+            <div class="container-infos">
+                <h2>Les informations</h2>
+                <div class="infos" id="departementInfos">
+                    {% if station_count%}
+                        <p>Le département {{ selected_departement }} a {{ station_count }} stations.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,92 @@
+<div class="sections">
+    <div class="partie-carte">
+        <div class="textes">
+            <h2>La Carte des Rivières</h2>
+            <p>AquaService possède une carte interactives des différents rivières de France</p>
+            <div class="button-container">
+                <a href="{{url_for('carte')}}"><button class="carte-button">Voir</button></a>
+            </div>
+        </div>
+
+        <div class="image-presentation">
+            <a href="{{url_for('carte')}}"><img src="{{url_for('static', filename='images/carte.jpg')}}" alt="Image manquante !"></a>
+        </div>
+    </div>
+
+    <div class="partie-img" id="partie-img">
+        <h2 class="animated-text">Les rivières</h2>
+        <p class="animated-text">RIVIÈRES ET COURS D'EAU EAU ET MILIEUX AQUATIQUES</p>
+    </div>    
+    <section class="partie">
+        <h2>Définition d'un cours d'eau</h2>
+        <div class="definition">
+            <h3>Les cours d'eau acheminent l'eau depuis une source jusqu'au milieu marin. Ils s'écoulent de l'amont vers l'aval de leur bassin versant. Les plus connus sont les fleuves, qui se jettent dans la mer, mais la France est parcourue par de très nombreux autres cours d'eau.</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/DqsU7v9ElxA" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="quote">"Un cours d'eau est une merveille de la nature, une source de vie et un lien entre les écosystèmes."</div>
+    </section>
+    <div class="partie2">
+        <div class="titre-p2">
+            <p>Le bon état des cours d'eau</p>
+            <h2>État des cours d'eau</h2>
+        </div>
+        <div class="boxes">
+            <div class="box">
+                <div class="icones"></div>
+                <p>Description générale de ce qu'est un cours d'eau en bon état.</p>
+            </div>
+            <div class="box">
+                <div class="icones"></div>
+                <p>Explication de la variabilité naturelle et de l'impact des activités humaines.</p>
+            </div>
+            <div class="box">
+                <div class="icones"></div>
+                <p>Histoire des mesures de qualité depuis les années 1970.</p>
+            </div>
+
+        </div>
+        <div class="button-p2">
+            <a href="https://www.eaufrance.fr/les-rivieres" target="_blank" ><button class="custom-button">Voir Plus</button></a>
+        </div>
+    </div>
+
+
+    <section class="detail-partie">
+        <h2>Plus de details</h2>
+        <div class="detail-boxes">
+            <div class="detail-box">
+                <img src="{{url_for('static', filename='images/riviere4.jpg')}}" alt="">
+                <div class="div-date">
+                    <p class="date">10/05/2024</p>
+                    <p class="by">by Ed</p>
+                </div>
+                <div class="detail-texte">
+                    <p>En 2019, 43,8 % des cours d'eau étaient en bon état chimique, respectant les Normes de Qualité Environnementale pour les pesticides, métaux lourds, hydrocarbures et PCB. Les critères d'évaluation mesurent cette conformité. Une carte interactive illustre l'état chimique des cours d'eau en 2019.</p>
+                </div>
+            </div>
+            <div class="detail-box">
+                <img src="{{url_for('static', filename='images/riviere3.jpg')}}" alt="">
+                <div class="div-date">
+                    <p class="date">15/06/2024</p>
+                    <p class="by">by admin</p>
+                </div>
+                <div class="detail-texte">
+                    <p>Les évaluations de l'état de conservation des espèces et habitats aquatiques selon les directives « habitats-faune-flore » et « oiseaux » pour la période 2007-2012 ont révélé des résultats et des tendances significatifs. Ces données sont accessibles via l'INPN, offrant un accès aux informations détaillées sur l'inventaire des espèces et des habitats.</p>
+                </div>
+            </div>
+            <div class="detail-box">
+                <img src="{{url_for('static', filename='images/riviere2.jpg')}}" alt="">
+                <div class="div-date">
+                    <p class="date">12/04/2024</p>
+                    <p class="by">by Moha</p>
+                </div>
+                <div class="detail-texte">
+                    <p>Les évaluations de l'état des cours d'eau selon les directives « habitats-faune-flore » et « eau » pour la période 2007-2012 ont révélé des résultats et des tendances significatifs. Ces données sont accessibles via l'INPN, offrant un accès aux informations détaillées sur l'inventaire des rivières et des fleuves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
